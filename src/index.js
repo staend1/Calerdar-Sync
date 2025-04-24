@@ -1,4 +1,15 @@
-require('dotenv').config();
+const fs = require('fs');
+const dotenv = require('dotenv');
+
+// .env 파일이 존재하면 로드, 없으면 로드하지 않음 (클라우드 타입 환경변수 우선)
+if (fs.existsSync('.env')) {
+  dotenv.config();
+}
+
+// 환경 변수 로그 출력 (디버깅용)
+console.log('GOOGLE_REDIRECT_URI:', process.env.GOOGLE_REDIRECT_URI);
+console.log('WEBHOOK_URL:', process.env.WEBHOOK_URL);
+console.log('NODE_ENV:', process.env.NODE_ENV);
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
