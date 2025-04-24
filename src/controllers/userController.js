@@ -163,7 +163,7 @@ async function addOrUpdateMapping(req, res) {
     
     // 캘린더와 파이프라인 정보 가져오기
     const [calendars, pipelines] = await Promise.all([
-      listCalendars(), 
+      listCalendars(user.googleTokens), 
       listPipelines(user.salesmapApiKey)
     ]);
     
@@ -301,7 +301,7 @@ async function getUserCalendars(req, res) {
     }
     
     // 캘린더 목록 조회
-    const calendars = await listCalendars();
+    const calendars = await listCalendars(user.googleTokens);
     
     // 필요한 정보만 추출
     const calendarList = calendars.map(calendar => ({
