@@ -32,7 +32,9 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: { 
-    secure: process.env.NODE_ENV === 'production', 
+    // HTTPS 환경에서만 secure 활성화
+    secure: process.env.NODE_ENV === 'production' && process.env.ENABLE_SECURE_COOKIE === 'true', 
+    sameSite: 'lax',
     maxAge: 24 * 60 * 60 * 1000 // 24시간
   }
 }));
