@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="header-content">
+        <h1>Salesmap-Calendar Sync</h1>
+        <nav>
+          <ul>
+            <li><a href="/dashboard">대시보드</a></li>
+            <li><a href="/settings" class="active">설정</a></li>
+            <li><a href="/api/auth/logout">로그아웃</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    
+    <main>
+      <div id="settings">
+        <h2>설정</h2>
+        
+        <div class="settings-tabs">
+          <button class="tab-btn active" data-tab="account">계정 연결</button>
+          <button class="tab-btn" data-tab="mappings">매핑 설정</button>
+          <button class="tab-btn" data-tab="webhooks">웹훅 관리</button>
+        </div>
+        
+        <div class="tab-content" id="account-tab">
+          <h3>계정 연결</h3>
+          
+          <div class="setting-card">
+            <div class="setting-header">
+              <h4>Google 계정</h4>
+              <div class="status" id="googleConnStatus" data-status="loading">
+                <div class="status-indicator"></div>
+                <span class="status-text">확인 중...</span>
+              </div>
+            </div>
+            <div class="setting-body">
+              <p>구글 캘린더 접근 권한이 필요합니다.</p>
+              <div id="googleAccountInfo" style="display: none;">
+                <p>연결된 계정: <span id="googleEmail"></span></p>
+              </div>
+              <div class="setting-actions">
+                <button class="btn" id="connectGoogle" style="display: none;">연결하기</button>
+                <button class="btn" id="reconnectGoogle" style="display: none;">재연결</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="setting-card">
+            <div class="setting-header">
+              <h4>Salesmap API</h4>
+              <div class="status" id="salesmapConnStatus" data-status="loading">
+                <div class="status-indicator"></div>
+                <span class="status-text">확인 중...</span>
+              </div>
+            </div>
+            <div class="setting-body">
+              <p>Salesmap API에 접근하기 위한 키가 필요합니다.</p>
+              <div class="form-group">
+                <label for="salesmapApiKey">API 키</label>
+                <div class="api-key-input">
+                  <input type="password" id="salesmapApiKey" placeholder="API 키를 입력하세요">
+                  <button class="btn" id="saveApiKey">저장</button>
+                </div>
+                <p class="help-text">Salesmap 관리자 설정에서 API 키를 확인하세요.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="tab-content" id="mappings-tab" style="display: none;">
+          <h3>매핑 설정</h3>
+          
+          <div class="mapping-container">
+            <div class="mapping-form">
+              <h4>새 매핑 추가</h4>
+              <form id="newMappingForm">
+                <div class="form-group">
+                  <label for="calendarSelect">Google 캘린더</label>
+                  <select id="calendarSelect" required>
+                    <option value="">캘린더를 선택하세요</option>
+                    <!-- JavaScript로 동적 생성 -->
+                  </select>
+                </div>
+                
+                <div class="form-group">
+                  <label for="pipelineSelect">Salesmap 파이프라인</label>
+                  <select id="pipelineSelect" required>
+                    <option value="">파이프라인을 선택하세요</option>
+                    <!-- JavaScript로 동적 생성 -->
+                  </select>
+                </div>
+                
+                <div class="form-group">
+                  <label for="stageSelect">파이프라인 단계</label>
+                  <select id="stageSelect" required>
+                    <option value="">파이프라인을 먼저 선택하세요</option>
+                    <!-- JavaScript로 동적 생성 -->
+                  </select>
+                </div>
+                
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary">매핑 추가</button>
+                </div>
+              </form>
+            </div>
+            
+            <div class="mapping-list">
+              <h4>현재 매핑 목록</h4>
+              <div class="table-container">
+                <table id="mappingsTableSettings">
+                  <thead>
+                    <tr>
+                      <th>캘린더</th>
+                      <th>파이프라인</th>
+                      <th>스테이지</th>
+                      <th>상태</th>
+                      <th>액션</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- JavaScript로 동적 생성 -->
+                  </tbody>
+                </table>
+              </div>
+              <div class="empty-state" id="noMappingsSettings">
+                <p>설정된 매핑이 없습니다. 새 매핑을 추가해주세요.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="tab-content" id="webhooks-tab" style="display: none;">
+          <h3>웹훅 관리</h3>
+          
+          <div class="webhook-info">
+            <p>Google 캘린더 API 웹훅은 최대 7일간 유효합니다. 기간이 만료되기 전에 갱신해야 합니다.</p>
+            
+            <div class="webhook-status-card">
+              <h4>웹훅 상태</h4>
+              <div id="webhooksStatusList">
+                <!-- JavaScript로 동적 생성 -->
+              </div>
+              <div class="empty-state" id="noWebhooks">
+                <p>설정된 웹훅이 없습니다.</p>
+              </div>
+            </div>
+            
+            <div class="webhook-actions">
+              <button class="btn btn-primary" id="setupAllWebhooks">모든 매핑에 웹훅 설정</button>
+              <button class="btn" id="renewAllWebhooks">모든 웹훅 갱신</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    
+    <footer>
+      <p>&copy; 2025 Salesmap-Calendar Sync</p>
+    </footer>
+  </div>
+  
+  <!-- 알림 모달 -->
+  <div class="notification" id="notification">
+    <div class="notification-content">
+      <span class="notification-message"></span>
+      <button class="close-notification">&times;</button>
+    </div>
+  </div>
+  
+  <script src="/js/settings.js"></script>
+</body>
+</html>

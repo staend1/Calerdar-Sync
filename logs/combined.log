@@ -1,0 +1,10 @@
+{"level":"info","message":"Server running on port 3000","service":"salesmap-calendar-sync","timestamp":"2025-04-24 16:01:59"}
+{"level":"info","message":"Access the app at http://localhost:3000","service":"salesmap-calendar-sync","timestamp":"2025-04-24 16:01:59"}
+{"level":"info","message":"Server running on port 3001","service":"salesmap-calendar-sync","timestamp":"2025-04-24 16:07:24"}
+{"level":"info","message":"Access the app at http://localhost:3001","service":"salesmap-calendar-sync","timestamp":"2025-04-24 16:07:24"}
+{"level":"info","message":"Server running on port 3001","service":"salesmap-calendar-sync","timestamp":"2025-04-24 16:35:42"}
+{"level":"info","message":"Access the app at http://localhost:3001","service":"salesmap-calendar-sync","timestamp":"2025-04-24 16:35:42"}
+{"level":"info","message":"SIGTERM signal received: closing HTTP server","service":"salesmap-calendar-sync","timestamp":"2025-04-24 16:38:25"}
+{"level":"info","message":"SIGTERM signal received: closing HTTP server","service":"salesmap-calendar-sync","timestamp":"2025-04-24 16:38:25"}
+{"level":"info","message":"Server running on port 3001","service":"salesmap-calendar-sync","timestamp":"2025-04-24 16:40:09"}
+{"level":"info","message":"Access the app at http://localhost:3001","service":"salesmap-calendar-sync","timestamp":"2025-04-24 16:40:09"}

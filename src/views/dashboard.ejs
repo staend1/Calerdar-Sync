@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="header-content">
+        <h1>Salesmap-Calendar Sync</h1>
+        <nav>
+          <ul>
+            <li><a href="/dashboard" class="active">대시보드</a></li>
+            <li><a href="/settings">설정</a></li>
+            <li><a href="/api/auth/logout">로그아웃</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    
+    <main>
+      <div id="dashboard">
+        <h2>대시보드</h2>
+        
+        <div class="status-cards">
+          <div class="card" id="googleStatus">
+            <h3>Google 계정</h3>
+            <div class="status" data-status="loading">
+              <div class="status-indicator"></div>
+              <span class="status-text">확인 중...</span>
+            </div>
+            <div class="card-action">
+              <button class="btn" id="setupGoogle" style="display: none;">연결하기</button>
+            </div>
+          </div>
+          
+          <div class="card" id="salesmapStatus">
+            <h3>Salesmap 연결</h3>
+            <div class="status" data-status="loading">
+              <div class="status-indicator"></div>
+              <span class="status-text">확인 중...</span>
+            </div>
+            <div class="card-action">
+              <button class="btn" id="setupSalesmap" style="display: none;">API 키 설정</button>
+            </div>
+          </div>
+          
+          <div class="card" id="mappingStatus">
+            <h3>매핑 설정</h3>
+            <div class="status" data-status="loading">
+              <div class="status-indicator"></div>
+              <span class="status-text">확인 중...</span>
+            </div>
+            <div class="card-action">
+              <button class="btn" id="manageMappings" style="display: none;">매핑 관리</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="section" id="mappingsSection" style="display: none;">
+          <h3>활성 매핑 목록</h3>
+          <div class="table-container">
+            <table id="mappingsTable">
+              <thead>
+                <tr>
+                  <th>캘린더</th>
+                  <th>파이프라인</th>
+                  <th>스테이지</th>
+                  <th>상태</th>
+                  <th>액션</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- JavaScript로 동적 생성 -->
+              </tbody>
+            </table>
+          </div>
+          <div class="empty-state" id="noMappings">
+            <p>매핑 설정이 없습니다. 설정 페이지에서 새 매핑을 추가해주세요.</p>
+            <a href="/settings" class="btn">매핑 추가하기</a>
+          </div>
+        </div>
+        
+        <div class="section" id="webhooksSection" style="display: none;">
+          <h3>웹훅 상태</h3>
+          <div class="card-content">
+            <div id="webhookStatus" data-status="loading">
+              <div class="status-indicator"></div>
+              <span class="status-text">확인 중...</span>
+            </div>
+            <div class="webhook-actions">
+              <button class="btn" id="setupWebhooks" style="display: none;">웹훅 설정</button>
+              <button class="btn" id="renewWebhooks" style="display: none;">웹훅 갱신</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    
+    <footer>
+      <p>&copy; 2025 Salesmap-Calendar Sync</p>
+    </footer>
+  </div>
+  
+  <!-- 모달 -->
+  <div class="modal" id="apiKeyModal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3>Salesmap API 키 설정</h3>
+      <form id="apiKeyForm">
+        <div class="form-group">
+          <label for="apiKey">API 키</label>
+          <input type="password" id="apiKey" name="apiKey" required>
+          <p class="help-text">Salesmap 관리자 설정에서 API 키를 확인하세요.</p>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">저장</button>
+          <button type="button" class="btn" id="cancelApiKey">취소</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Salesmap-Calendar Sync</h1>
+      <p>구글 캘린더 일정 이동을 Salesmap 딜 상태 변경과 자동 연동하는 서비스</p>
+    </header>
+    
+    <main>
+      <div class="hero">
+        <h2>구글 캘린더와 Salesmap의 완벽한 통합</h2>
+        <p>캘린더에서 일정을 다른 폴더로 이동하면 자동으로 Salesmap의 딜 상태가 업데이트됩니다.</p>
+        
+        <div class="features">
+          <div class="feature">
+            <h3>자동 동기화</h3>
+            <p>캘린더 이동 감지 시 즉시 Salesmap 업데이트</p>
+          </div>
+          <div class="feature">
+            <h3>맞춤 설정</h3>
+            <p>캘린더와 파이프라인 단계 간 자유로운 매핑</p>
+          </div>
+          <div class="feature">
+            <h3>간편한 설정</h3>
+            <p>몇 번의 클릭으로 원하는 방식으로 연동 구성</p>
+          </div>
+        </div>
+        
+        <div class="cta">
+          <a href="/api/auth/google" class="btn btn-primary">
+            <img src="/images/google-logo.svg" alt="Google">
+            Google 계정으로 시작하기
+          </a>
+        </div>
+      </div>
+      
+      <div class="how-it-works">
+        <h2>작동 방식</h2>
+        <ol>
+          <li>
+            <h3>1. 인증 및 연결</h3>
+            <p>Google 계정과 Salesmap API 키를 연결하세요.</p>
+          </li>
+          <li>
+            <h3>2. 매핑 설정</h3>
+            <p>각 캘린더 폴더와 Salesmap 파이프라인 단계를 매핑하세요.</p>
+          </li>
+          <li>
+            <h3>3. 자동화 시작</h3>
+            <p>이벤트 제목에 [SALESMAP:딜ID] 형식으로 표시하면 자동 연동이 시작됩니다.</p>
+          </li>
+        </ol>
+      </div>
+    </main>
+    
+    <footer>
+      <p>&copy; 2025 Salesmap-Calendar Sync</p>
+    </footer>
+  </div>
+</body>
+</html>
